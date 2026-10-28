@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Evakuasi Ketep</title>
+    
+    <!-- Manifest & FontAwesome -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Leaflet Routing Machine CSS (Navigasi Rute) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; }
+        #header { 
+            position: absolute; top: 12px; left: 12px; right: 12px; z-index: 1000; 
+            background: rgba(255, 255, 255, 0.95); padding: 10px 15px; border-radius: 10px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25); 
+        }
+        #header h2 { margin: 0; font-size: 15px; color: #b91c1c; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        #btn-gps { 
+            background: #2563eb; color: white; border: none; padding: 8px 14px; 
+            border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: 0.2s;
+        }
+        #btn-gps:active { transform: scale(0.95); }
+        #map { width: 100vw; height: 100vh; }
+        
+        /* Custom Styling Leaflet Routing Panel */
+        .leaflet-routing-container {
+            font-size: 11px !important;
+            max-width: 260px !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h2><i class="fa-solid fa-person-walking-arrow-right"></i> EVAKUASI DESA KETEP</h2>
+        <button id="btn-gps" onclick="lacakLokasi()"><i class="fa-solid fa-location-crosshairs"></i> Posisi Saya</button>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS & Routing Machine JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    
+    <!-- Script Aplikasi Utama -->
+    <script src="app.js"></script>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(() => console.log("Mode Offline PWA Siap!"));
+        }
+    </script>
+</body>
+</html>
